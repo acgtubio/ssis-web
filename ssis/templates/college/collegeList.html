@@ -1,0 +1,17 @@
+{% extends 'layouts/master.html' %}
+
+{% block title %} Colleges {% endblock %}
+{% block content %}
+
+<table>
+    {% for college in data %}
+
+        <tr>
+            <td>{{ college.id }}</td>
+            <td>{{ college.college_name }}</td>
+        </tr>
+
+    {% endfor %}
+</table>
+
+{% endblock %}

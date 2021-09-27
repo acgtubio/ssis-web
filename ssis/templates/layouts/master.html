@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block styles %}
+            {{ bootstrap.load_css() }}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        {% endblock %}
+
+        {% endblock %}
+
+        <title>{% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+        {% block scripts %}
+            <!-- Optional JavaScript -->
+            {{ bootstrap.load_js() }}
+        {% endblock %}
+
+        
+        <div class="container">
+            <div class='navbar navbar-dark'>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        {% block students %}
+                        <li class="breadcrumb-item" aria-current="page"><a href="{{ url_for('students.students') }}">Students</a></li>
+                        {% endblock %}
+                        
+                        {% block courses %}
+                        <li class="breadcrumb-item"><a href="{{ url_for('course.course')}}">Courses</a></li>
+                        {% endblock %}
+
+                        {% block colleges %}
+                        <li class="breadcrumb-item"><a href="{{ url_for('college.college')}}">Colleges</a></li>
+                        {% endblock %}
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        
+
+        {% block content %}
+        {% endblock %}
+    </body>
+
+</html>
