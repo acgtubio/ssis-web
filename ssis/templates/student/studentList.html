@@ -34,7 +34,7 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id='studentList'>
                         {% for student in students %}
             
                         <tr>
@@ -45,7 +45,7 @@
                             <td>{{ student.year }}</td>
                             <td>{{ student.gender }}</td>
                             <td>
-                                <button class="btn btn-warning btn-edit">Edit</button> 
+                                <button class="btn btn-warning btn-edit" data-id="{{ student.id }}">Edit</button> 
                                 <button class="btn btn-danger btn-delete" data-id="{{ student.id }}">Delete</button>
                             </td>
                         </tr>
@@ -67,6 +67,6 @@
 
 {{ bootstrap.load_js() }}
 
-<script src=" {{ url_for('static', filename='js/index.js') }}"></script>
+<script src=" {{ url_for('static', filename='js/student.js') }}"></script>
 
 {% endblock %}

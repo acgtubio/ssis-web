@@ -17,10 +17,6 @@ def create_app(test_config=None):
     bootstrap = Bootstrap(app)
     mysql.init_app(app)
 
-    @app.route('/')
-    def hello():
-        return 'hello'
-
     from .student import studentBP as stBP
     from .college import collegeBP as clgBP
     from .course import courseBP as crsBP
