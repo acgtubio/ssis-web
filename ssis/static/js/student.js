@@ -17,7 +17,7 @@ $( () => {
                         <td>${parsedJSON.course}</td>
                         <td>${parsedJSON.year}</td>
                         <td>${parsedJSON.gender}</td>
-                        <td>
+                        <td class="align-to-right">
                             <button class="btn btn-warning btn-edit" data-id=${parsedJSON.id}>Edit</button> 
                             <button class="btn btn-danger btn-delete" data-id=${parsedJSON.id}>Delete</button>
                         </td>
@@ -36,7 +36,7 @@ $( () => {
     });
     $('.table').on('click', '.btn-delete', function(){
         id = $(this).data('id');
-        if (confirm(`Delete student with ID ${id}`)){
+        if (confirm(`Delete student with ID "${id}"?`)){
             $.ajax('/api/deleteStudent',{
                 method: 'POST',
                 data: {id: id},
