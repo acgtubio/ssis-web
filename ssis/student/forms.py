@@ -38,6 +38,7 @@ class StudentForm(FlaskForm):
             courses.append((course.id, course.course_name))
 
         self.course.choices = courses
+        self.edit = editInfo;
 
         if student:
             self.studentID.render_kw = {'readonly': ''}
@@ -54,6 +55,5 @@ class StudentForm(FlaskForm):
                 self.customGender.render_kw = {'enabled': ''}
                 self.customGender.default = student.gender.capitalize()
             self.process()
-        if editInfo:
-            self.edit = editInfo;
+            
             

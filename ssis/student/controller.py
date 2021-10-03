@@ -1,4 +1,4 @@
-from flask import render_template, jsonify, request, jsonify, redirect
+from flask import render_template, jsonify, request, redirect
 from . import studentBP
 from ssis.models.StudentModel import Student
 from ssis.models.StudentRepo import StudentRepo
