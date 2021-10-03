@@ -1,4 +1,6 @@
-class Course():
+from ssis.models.ModelJSON import ModelJSON
+
+class Course(ModelJSON):
     def __init__(self, course_code, course_name, college_id):
         self.id = course_code
         self.course_name = course_name

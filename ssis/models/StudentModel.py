@@ -1,6 +1,7 @@
+from ssis.models.ModelJSON import ModelJSON
 import json
 
-class Student():
+class Student(ModelJSON):
     def __init__(self, idNo, firstname, lastname, course, year, gender):
         self.id = idNo
         self.firstname = firstname
@@ -8,6 +9,3 @@ class Student():
         self.course = course
         self.year = year
         self.gender = gender
-    
-    def toJSON(self):
-        return json.dumps(self, default=lambda a: a.__dict__)
