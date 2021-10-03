@@ -22,6 +22,7 @@
             {{ bootstrap.load_js() }}
         {% endblock %}
 
+        {% from 'bootstrap/nav.html' import render_nav_item %}
         
         <div class="container">
             <div class='navbar navbar-dark'>
@@ -42,6 +43,7 @@
                 </nav>
             </div>
         </div>
+
         
 
         {% block content %}

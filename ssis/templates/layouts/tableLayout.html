@@ -1,0 +1,40 @@
+{% extends 'layouts/master.html' %}
+
+{% block content %}
+
+{% block container %}
+
+    <div class="container">
+        <div class="row">
+            {% block searchArea %}
+            {% endblock %}
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            {% block tableHeaders %}
+                            {% endblock %}
+                        </tr>
+                    </thead>
+
+                    {% block tableBody %}
+                    <tbody id="tableRows">
+
+                        {% block tableContent %}
+                        {% endblock %}
+
+                    </tbody>
+                    {% endblock %}
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% endblock %}
