@@ -1,18 +1,18 @@
 $(() => {
-    $('.table').on('click', '.btn-edit', function() {
-        var id = $(this).data('id')
-        location.href = `/colleges/edit?college_code=${id}`;
+    $('#tableRows').on('click', '.btn-edit', function(){
+        location.href = `/courses/edit?id=${$(this).data('id')}`
     });
-    $('.table').on('click', '.btn-delete', function(){
-        id = $(this).data('id');
-        if (confirm(`Delete college with college code "${id}"?`)){
-            $.ajax('/api/deleteCollege',{
+    $('#tableRows').on('click', '.btn-delete', function(){
+        var id = $(this).data('id');
+
+        if(confirm(`Delete Course with course code '${id}'?`)){
+            $.ajax('/api/deleteCourse',{
                 method: 'POST',
                 data: {id: id},
 
                 success: (res) => {
                     if (res.success){
-                        alert("College successfully deleted.")
+                        alert("Course successfully deleted.")
                         location.reload()
                     }
                 }
@@ -22,7 +22,7 @@ $(() => {
     $('#searchBtn').click(() => {
         var s = $('#searchInput').val();
         if (s != ""){
-            $.ajax('/api/searchCollege',{
+            $.ajax('/api/searchCourse',{
                 method: 'get',
                 data: {keyword: s},
 
@@ -32,7 +32,8 @@ $(() => {
                         var parsedJSON = JSON.parse(r);
                         $('#tableRows').append(`<tr>
                         <td>${parsedJSON.id}</td>
-                        <td>${parsedJSON.college_name}</td>
+                        <td>${parsedJSON.course_name}</td>
+                        <td>${parsedJSON.college_id}</td>
                         <td class="align-to-right">
                             <button class="btn btn-warning btn-edit" data-id=${parsedJSON.id}>Edit</button> 
                             <button class="btn btn-danger btn-delete" data-id=${parsedJSON.id}>Delete</button>

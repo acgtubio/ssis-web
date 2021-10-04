@@ -31,11 +31,11 @@ $( () => {
         }
     });
     $('.table').on('click', '.btn-edit', function(){
-        id = $(this).data('id');
+        var id = $(this).data('id');
         location.href = `/students/edit?id=${id}`
     });
     $('.table').on('click', '.btn-delete', function(){
-        id = $(this).data('id');
+        var id = $(this).data('id');
         if (confirm(`Delete student with ID "${id}"?`)){
             $.ajax('/api/deleteStudent',{
                 method: 'POST',

@@ -58,8 +58,9 @@ class CourseRepo():
         try:
             cursor.execute(f"""
                 UPDATE course SET
-                course_name = {course.course_name}
-                WHERE course_code = {course.id}
+                course_name = '{course.course_name}',
+                college = '{course.college_id}'
+                WHERE course_code = '{course.id}'
             """)
             mysql.connection.commit()
         except Exception as e:

@@ -1,18 +1,49 @@
-{% extends 'layouts/master.html' %}
+{% extends 'layouts/tableLayout.html' %}
 
 {% block title %} Courses {% endblock %}
-{% block content %}
 
-<table>
-    {% for course in data %}
+{% block searchArea %}
 
-        <tr>
-            <td>{{ course.id }}</td>
-            <td>{{ course.course_name }}</td>
-            <td>{{ course.college_id }}</td>
-        </tr>
+<div class="col">
+    <span>
+        <a href=" {{ url_for('.courseAddRender') }}">Add Course</a>
+    </span>
+</div>
+<div class='col-auto'>
+    <input type="text" name="" id="searchInput">
+    <button type="button" class="btn btn-dark" id='searchBtn'> Search </button>
+</div>
 
-    {% endfor %}
-</table>
+{% endblock %}
+
+{% block tableHeaders %}
+
+<th>Course Code</th>
+<th>Course Name</th>
+<th>College</th>
+<th></th>
+
+{% endblock %}
+
+{% block tableContent %}
+
+{% for course in data %}
+<tr>
+    <td>{{ course.id }}</td>
+    <td>{{ course.course_name }}</td>
+    <td>{{ course.college_id }}</td>
+    <td class="align-to-right">
+        <button class="btn btn-warning btn-edit" data-id='{{ course.id }}'>Edit</button>
+        <button class="btn btn-danger btn-delete" data-id="{{ course.id }}">Delete</button>
+    </td>
+</tr>
+{% endfor %}
+
+{% endblock %}
+
+{% block scripts %}
+
+{{ bootstrap.load_js() }}
+<script src=" {{ url_for('static', filename='js/courses.js') }}"></script>
 
 {% endblock %}
