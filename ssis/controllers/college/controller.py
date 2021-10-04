@@ -2,7 +2,7 @@ from . import collegeBP
 from flask import render_template, request, redirect, jsonify
 from ssis.models.CollegeModel import College
 from ssis.models.CollegeRepo import CollegeRepo
-from ssis.college.CollegeForm import CollegeForm
+from ssis.controllers.college.CollegeForm import CollegeForm
 
 @collegeBP.route('/colleges')
 def college():

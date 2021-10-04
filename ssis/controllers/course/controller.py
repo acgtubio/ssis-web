@@ -2,7 +2,7 @@ from . import courseBP
 from flask import render_template, jsonify, redirect, request
 from ssis.models.CourseModel import Course
 from ssis.models.CourseRepo import CourseRepo
-from ssis.course.CourseForm import CourseForm
+from ssis.controllers.course.CourseForm import CourseForm
 
 @courseBP.route('/courses')
 def course():

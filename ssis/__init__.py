@@ -17,9 +17,9 @@ def create_app(test_config=None):
     bootstrap = Bootstrap(app)
     mysql.init_app(app)
 
-    from .student import studentBP as stBP
-    from .college import collegeBP as clgBP
-    from .course import courseBP as crsBP
+    from .controllers.student import studentBP as stBP
+    from .controllers.college import collegeBP as clgBP
+    from .controllers.course import courseBP as crsBP
 
     app.register_blueprint(stBP)
     app.register_blueprint(clgBP)

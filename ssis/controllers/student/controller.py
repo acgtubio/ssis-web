@@ -2,7 +2,7 @@ from flask import render_template, jsonify, request, redirect
 from . import studentBP
 from ssis.models.StudentModel import Student
 from ssis.models.StudentRepo import StudentRepo
-from ssis.student.forms import StudentForm
+from ssis.controllers.student.forms import StudentForm
 
 @studentBP.route('/students')
 @studentBP.route('/')
