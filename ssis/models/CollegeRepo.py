@@ -83,7 +83,7 @@ class CollegeRepo():
         collegeJSON = []
 
         for college in colleges:
-            c = College(college[0], college[1]).toJSON()
+            c = College(college[0], college[1])
             collegeJSON.append(c)
 
         return collegeJSON

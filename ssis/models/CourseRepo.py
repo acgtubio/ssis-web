@@ -86,7 +86,7 @@ class CourseRepo():
         courseJSON = []
 
         for course in courses:
-            c = Course(course[0], course[1], course[2]).toJSON()
+            c = Course(course[0], course[1], course[2])
             courseJSON.append(c)
 
         return courseJSON

@@ -3,13 +3,16 @@ from . import studentBP
 from ssis.models.StudentModel import Student
 from ssis.models.StudentRepo import StudentRepo
 from ssis.controllers.student.forms import StudentForm
+from ssis.models.SearchForm import SearchForm
 
-@studentBP.route('/students')
+@studentBP.route('/students', methods=['GET'])
 @studentBP.route('/')
 def students():
-    st = StudentRepo.All()
+    keyword = request.args.get('keyword', '', str)
+    page = request.args.get('page', '1', int)
+    st = StudentRepo.Search(keyword)
+
     return render_template('/student/studentList.html', title="Student List", students=st)
-    # return 'wow'
 
 @studentBP.route('/students/add', methods=['GET'])
 def studentAddRender():
@@ -54,11 +57,11 @@ def studentEdit():
         form.customGender.data = ''
     return render_template('/student/addStudent.html', title="Edit Student", form=form, ac='.studentEdit')
 
-@studentBP.route('/api/searchStudent', methods=["GET"])
-def getStudent():
-    k = request.args.get('keyword')
-    st = StudentRepo.Search(k)
-    return jsonify(st)
+# @studentBP.route('/students/searchStudent', methods=["GET"])
+# def getStudent():
+#     k = request.args.get('keyword')
+#     st = StudentRepo.Search(k)
+#     return render_template('/student/')
 
 @studentBP.route('/api/deleteStudent', methods=['POST'])
 def deleteStudent():

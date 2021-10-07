@@ -6,7 +6,8 @@ from ssis.controllers.college.CollegeForm import CollegeForm
 
 @collegeBP.route('/colleges')
 def college():
-    colleges = CollegeRepo.All()
+    keyword = request.args.get('keyword', '', type=str)
+    colleges = CollegeRepo.Search(keyword)
     return render_template('/college/collegeList.html', data = colleges)
 
 @collegeBP.route('/colleges/add', methods=['GET'])

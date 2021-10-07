@@ -6,7 +6,8 @@ from ssis.controllers.course.CourseForm import CourseForm
 
 @courseBP.route('/courses')
 def course():
-    data = CourseRepo.All()
+    keyword = request.args.get('keyword', '', type=str)
+    data = CourseRepo.Search(keyword)
     return render_template('course/courseList.html', data = data)
 
 @courseBP.route('/courses/add', methods=['GET'])
@@ -53,10 +54,3 @@ def deleteCourse():
     res = CourseRepo.Delete(cc)
 
     return jsonify(success=res)
-
-@courseBP.route('/api/searchCourse', methods=['GET'])
-def searchCourse():
-    cc = request.args.get('keyword')
-    courses = CourseRepo.Search(cc)
-
-    return jsonify(courses)

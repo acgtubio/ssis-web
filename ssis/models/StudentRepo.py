@@ -78,17 +78,21 @@ class StudentRepo():
     @staticmethod
     def Search(keyword):
         cursor = mysql.connection.cursor()
-
-        try:
-            cursor.execute(f"""
-                SELECT * FROM student
+        query = "SELECT * FROM student"
+        
+        if keyword != "":
+            query = f"""
+                {query}
                 WHERE id LIKE '%{keyword}%' OR
                 firstname LIKE '%{keyword}%' OR
                 lastname LIKE '%{keyword}%' OR
                 course LIKE '%{keyword}%' OR
                 yr LIKE '%{keyword}%' OR
                 gender LIKE '%{keyword}%'
-            """)
+            """
+        try:
+            cursor.execute(query)
+                
             st = cursor.fetchall()
         except Exception as e:
             return f"{e}"
@@ -96,7 +100,7 @@ class StudentRepo():
         studentListInJSON = []
 
         for student in st:
-            s = Student(student[0], student[1], student[2], student[3], student[4], student[5]).toJSON()
+            s = Student(student[0], student[1], student[2], student[3], student[4], student[5])
             studentListInJSON.append(s)
 
         return studentListInJSON
