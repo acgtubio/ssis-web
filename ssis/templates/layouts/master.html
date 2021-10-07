@@ -25,7 +25,33 @@
         {% from 'bootstrap/nav.html' import render_nav_item %}
         
         <div class="container">
-            <div class='navbar navbar-dark'>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+                <span class="navbar-brand">
+                    SSIS
+                </span>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        {% block student_nav %}
+                        <li class="navbar-item">
+                            <a href="{{ url_for('students.students') }}" class="nav-link">Students</a>
+                        </li>
+                        {% endblock %}
+                        <li class="navbar-item">
+                            {% block course_nav %}
+                            <a href="{{ url_for('course.course') }}" class="nav-link">Courses</a>
+                            {% endblock %}
+                        </li>
+                        <li class="navbar-item">
+                            {% block college_nav %}
+                            <a href="{{ url_for('college.college') }}" class="nav-link">Colleges</a>
+                            {% endblock %}
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+            <!-- <div class='navbar navbar-dark'>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         {% block students %}
@@ -41,7 +67,7 @@
                         {% endblock %}
                     </ol>
                 </nav>
-            </div>
+            </div> -->
         </div>
 
         

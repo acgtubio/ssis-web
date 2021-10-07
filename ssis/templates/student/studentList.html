@@ -1,65 +1,54 @@
-{% extends '/layouts/master.html' %}
+{% extends '/layouts/tableLayout.html' %}
 {% block title %}{{ title }}{% endblock %}
 
-{% block students %}
-<li class="breadcrumb-item active" aria-current="page">Students</li>
+{% block student_nav %}
+    <li class="navbar-item active">
+        <a href="{{ url_for('students.students') }}" class="nav-link">Students</a>
+    </li>
 {% endblock %}
 
-{% block content %}
-
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col">
-                <span>
-                    <a href=" {{ url_for('.studentAddRender') }}">Add Student</a>
-                </span>
-            </div>
-            <div class='col-auto'>
-                <input type="text" name="" id="searchInput">
-                <button type="button" class="btn btn-dark" id='searchBtn'> Search </button>
-                <!-- "{{ url_for('.studentAdd') }}" -->
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col'>
-                <table class='table'>
-                    <thead>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Course</th>
-                            <th>Year</th>
-                            <th>Gender</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id='studentList'>
-                        {% for student in students %}
-            
-                        <tr>
-                            <td>{{ student.id }}</td>
-                            <td>{{ student.firstname }}</td>
-                            <td>{{ student.lastname }}</td>
-                            <td>{{ student.course }}</td>
-                            <td>{{ student.year }}</td>
-                            <td>{{ student.gender }}</td>
-                            <td class="align-to-right">
-                                <button class="btn btn-warning btn-edit" data-id="{{ student.id }}">Edit</button> 
-                                <button class="btn btn-danger btn-delete" data-id="{{ student.id }}">Delete</button>
-                            </td>
-                        </tr>
-            
-                        {% endfor %}
-                    </tbody>
-                    
-                </table>
-            </div>
-
-        </div>
-
+{% block searchArea %}
+<div class="col">
+    <span>
+        <a href=" {{ url_for('.studentAddRender') }}" class="btn btn-outline-primary btn-sm">Add Student</a>
+    </span>
+</div>
+<div class='col-auto'>
+    <div class="form-inline">
+        <input type="text" id="searchInput" class="form-control mr-sm-2" placeholder="Search Student">
+        <button type="button" class="btn btn-primary" id='searchBtn'> Search </button>
     </div>
+</div>
+{% endblock %}
     
+{% block tableHeaders %}
+<th>Student ID</th>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>Course</th>
+<th>Year</th>
+<th>Gender</th>
+<th></th>
+{% endblock %}
+
+{% block tableContent %}
+
+{% for student in students %}
+            
+<tr>
+    <td>{{ student.id }}</td>
+    <td>{{ student.firstname }}</td>
+    <td>{{ student.lastname }}</td>
+    <td>{{ student.course }}</td>
+    <td>{{ student.year }}</td>
+    <td>{{ student.gender }}</td>
+    <td class="align-to-right">
+        <button class="btn btn-warning btn-edit" data-id="{{ student.id }}">Edit</button> 
+        <button class="btn btn-danger btn-delete" data-id="{{ student.id }}">Delete</button>
+    </td>
+</tr>
+
+{% endfor %}
 
 {% endblock %}
 

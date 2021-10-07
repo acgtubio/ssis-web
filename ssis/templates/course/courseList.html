@@ -2,16 +2,24 @@
 
 {% block title %} Courses {% endblock %}
 
+{% block course_nav %}
+    <li class="navbar-item active">
+        <a href="{{ url_for('course.course') }}" class="nav-link">Courses</a>
+    </li>
+{% endblock %}
+
 {% block searchArea %}
 
 <div class="col">
     <span>
-        <a href=" {{ url_for('.courseAddRender') }}">Add Course</a>
+        <a href=" {{ url_for('.courseAddRender') }}" class="btn btn-outline-primary btn-sm">Add Course</a>
     </span>
 </div>
 <div class='col-auto'>
-    <input type="text" name="" id="searchInput">
-    <button type="button" class="btn btn-dark" id='searchBtn'> Search </button>
+    <div class="form-inline">
+        <input type="text" class="form-control mr-sm-2" id="searchInput" placeholder="Search Course">
+        <button type="button" class="btn btn-primary" id='searchBtn'> Search </button>
+    </div>
 </div>
 
 {% endblock %}

@@ -7,10 +7,10 @@ $( () => {
                 data: {keyword: s},
 
                 success: (res) => {
-                    $('#studentList').empty()
+                    $('#tableRows').empty()
                     for (var r of res){
                         var parsedJSON = JSON.parse(r);
-                        $('#studentList').append(`<tr>
+                        $('#tableRows').append(`<tr>
                         <td>${parsedJSON.id}</td>
                         <td>${parsedJSON.firstname}</td>
                         <td>${parsedJSON.lastname}</td>

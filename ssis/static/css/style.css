@@ -6,3 +6,9 @@
 .align-to-right {
     text-align: right;
 }
+.body-content {
+    padding-top: 20px;
+}
+.table-area {
+    padding-top: 5px;
+}
