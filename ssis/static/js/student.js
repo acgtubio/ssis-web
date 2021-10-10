@@ -1,35 +1,4 @@
 $( () => {
-    // $('#searchBtn').click(() => {
-    //     var s = $('#searchInput').val();
-    //     if (s != ""){
-    //         $.ajax('/api/searchStudent',{
-    //             method: 'get',
-    //             data: {keyword: s},
-
-    //             success: (res) => {
-    //                 $('#tableRows').empty()
-    //                 for (var r of res){
-    //                     var parsedJSON = JSON.parse(r);
-    //                     $('#tableRows').append(`<tr>
-    //                     <td>${parsedJSON.id}</td>
-    //                     <td>${parsedJSON.firstname}</td>
-    //                     <td>${parsedJSON.lastname}</td>
-    //                     <td>${parsedJSON.course}</td>
-    //                     <td>${parsedJSON.year}</td>
-    //                     <td>${parsedJSON.gender}</td>
-    //                     <td class="align-to-right">
-    //                         <button class="btn btn-warning btn-edit" data-id=${parsedJSON.id}>Edit</button> 
-    //                         <button class="btn btn-danger btn-delete" data-id=${parsedJSON.id}>Delete</button>
-    //                     </td>
-    //                     </tr>`)
-    //                 }
-    //             }
-    //         });
-    //     }
-    //     else{
-    //         location.reload()
-    //     }
-    // });
     $('.table').on('click', '.btn-edit', function(){
         var id = $(this).data('id');
         location.href = `/students/edit?id=${id}`
