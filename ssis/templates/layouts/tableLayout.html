@@ -32,7 +32,20 @@
                 </table>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col">
+                <nav>
+                <ul class="pagination pagination-sm justify-content-center">
+                    {% block back %}
+                    {% endblock %}
+                    {% block pages %}
+                    {% endblock %}
+                    {% block next %}
+                    {% endblock %}
+                </ul>
+                </nav>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

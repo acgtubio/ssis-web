@@ -52,6 +52,58 @@
 
 {% endblock %}
 
+{% block back %}
+
+    {% if prev %}
+    <li class="page-item">
+        <a href="{{ prev }}" class="page-link">
+            <span>&laquo;</span>
+        </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a href="" class="page-link">
+            <span>&laquo;</span>
+        </a>
+    </li>
+    {% endif %}
+
+{% endblock %}
+
+{% block pages %}
+
+{% for page in pages %}
+
+{% if currPage == page[0] %}
+<li class="page-item active">
+{% else %}
+<li class="page-item">
+{% endif %}
+    <a href="{{ page[1] }}" class="page-link">
+        <span>{{ page[0] }}</span>
+    </a>
+</li>
+
+{% endfor %}
+
+{% endblock %}
+
+{% block next %}
+    {% if nxt %}
+    <li class="page-item">
+        <a href="{{ nxt }}" class="page-link">
+            <span>&raquo;</span>
+        </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a href="" class="page-link">
+            <span>&raquo;</span>
+        </a>
+    </li>
+    {% endif %}
+{% endblock %}
+
 {% block scripts %}
 
 {{ bootstrap.load_js() }}

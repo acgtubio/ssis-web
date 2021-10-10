@@ -67,15 +67,20 @@ class CollegeRepo():
         return True
 
     @staticmethod
-    def Search(keyword):
+    def Search(keyword, page=1, limit=1000):
         cursor = mysql.connection.cursor()
+        query = "SELECT * FROM college"
+        lim = f"LIMIT {limit} OFFSET {(page-1)*limit}"
 
-        try:
-            cursor.execute(f"""
-                SELECT * FROM college
+        if keyword!="":
+            query = f"""
+                {query}
                 WHERE college_code LIKE '%{keyword}%' OR
                 college_name LIKE '%{keyword}%'
-            """)
+            """
+
+        try:
+            cursor.execute(f"{query} {lim}")
             colleges = cursor.fetchall()
         except Exception as e:
             return f'{e}'
@@ -107,3 +112,23 @@ class CollegeRepo():
             return c
 
         return False
+    
+    @staticmethod
+    def Count(keyword=""):
+        cursor = mysql.connection.cursor()
+        query = ""
+        if keyword != "":
+            query = f"""
+                WHERE college_code LIKE '%{keyword}%' OR
+                college_name LIKE '%{keyword}%'
+            """
+
+        try:
+            cursor.execute(f"""
+                SELECT COUNT(*) FROM college {query}
+            """)
+            count = cursor.fetchall()
+        except Exception as e:
+            return f'{e}'
+
+        return count[0][0]

@@ -1,14 +1,29 @@
 from . import collegeBP
-from flask import render_template, request, redirect, jsonify
+from flask import render_template, request, redirect, jsonify, url_for
 from ssis.models.CollegeModel import College
 from ssis.models.CollegeRepo import CollegeRepo
 from ssis.controllers.college.CollegeForm import CollegeForm
+import math
 
 @collegeBP.route('/colleges')
 def college():
     keyword = request.args.get('keyword', '', type=str)
-    colleges = CollegeRepo.Search(keyword)
-    return render_template('/college/collegeList.html', data = colleges)
+    page = request.args.get('page', 1, type=int)
+
+    colleges = CollegeRepo.Search(keyword, page, 10)
+    collegeCount = CollegeRepo.Count(keyword)
+
+    pages = []
+    pageCount = math.ceil(collegeCount/10)
+
+    for x in range(page-5, page+6):
+        if x >=1 and x<=pageCount:
+            pages.append((x, url_for('.college', page=x, keyword=keyword)))
+
+    prev = url_for('.college', page=page-1, keyword=keyword) if page > 1 else None
+    nxt = url_for('.college', page=page+1, keyword=keyword) if page < pageCount else None
+
+    return render_template('/college/collegeList.html', data = colleges, prev=prev, nxt=nxt, currPage=page, pages=pages)
 
 @collegeBP.route('/colleges/add', methods=['GET'])
 def collegeAddRender():

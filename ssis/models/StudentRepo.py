@@ -76,9 +76,10 @@ class StudentRepo():
         return True
 
     @staticmethod
-    def Search(keyword):
+    def Search(keyword, page=1, limit=1000):
         cursor = mysql.connection.cursor()
         query = "SELECT * FROM student"
+        lim = f"LIMIT {limit} OFFSET {(page-1) * limit}"
         
         if keyword != "":
             query = f"""
@@ -88,10 +89,10 @@ class StudentRepo():
                 lastname LIKE '%{keyword}%' OR
                 course LIKE '%{keyword}%' OR
                 yr LIKE '%{keyword}%' OR
-                gender LIKE '%{keyword}%'
+                gender LIKE '%{keyword}%' 
             """
         try:
-            cursor.execute(query)
+            cursor.execute(f'{query} {lim}')
                 
             st = cursor.fetchall()
         except Exception as e:
@@ -124,3 +125,27 @@ class StudentRepo():
             return student
         
         return False
+
+    @staticmethod
+    def Count(keyword=""):
+        cursor = mysql.connection.cursor()
+        query = ""
+        if keyword != "":
+            query = f"""
+                WHERE id LIKE '%{keyword}%' OR
+                firstname LIKE '%{keyword}%' OR
+                lastname LIKE '%{keyword}%' OR
+                course LIKE '%{keyword}%' OR
+                yr LIKE '%{keyword}%' OR
+                gender LIKE '%{keyword}%'
+            """
+
+        try:
+            cursor.execute(f"""
+                SELECT COUNT(*) FROM student {query}
+            """)
+            count = cursor.fetchall()
+        except Exception as e:
+            return f'{e}'
+
+        return count[0][0]
