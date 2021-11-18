@@ -1,9 +1,15 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 from ssis.models.CourseRepo import CourseRepo
 from ssis.models.StudentRepo import StudentRepo
 from wtforms import StringField, SubmitField, validators, SelectField, RadioField
 
 class StudentForm(FlaskForm):
+    photo = FileField('Image', validators=[
+        FileRequired(),
+        FileAllowed(['jpg', 'png'], 'Images only!')
+        ])
+
     studentID = StringField('Student ID', validators = [
         validators.DataRequired(),
         validators.Regexp('^\d\d\d\d-\d\d\d\d$')
@@ -32,7 +38,7 @@ class StudentForm(FlaskForm):
     
 
     def __init__(self, student = None, form = None, editInfo=False):
-        super().__init__(form)
+        super().__init__()
         courses = []
         for course in CourseRepo.All():
             courses.append((course.id, course.course_name))

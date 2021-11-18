@@ -33,7 +33,7 @@ def studentAddRender():
 
 @studentBP.route('/students/add', methods=['POST'])
 def studentAdd():
-    form = StudentForm(form = request.form)
+    form = StudentForm()
     
     if form.gender.data != 'others':
         form.customGender.data = form.gender.data
