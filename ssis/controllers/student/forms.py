@@ -7,7 +7,7 @@ from wtforms import StringField, SubmitField, validators, SelectField, RadioFiel
 class StudentForm(FlaskForm):
     photo = FileField('Image', validators=[
         FileRequired(),
-        FileAllowed(['jpg', 'png'], 'Images only!')
+        FileAllowed(['jpeg', 'jpg', 'png'], 'Images only!')
         ])
 
     studentID = StringField('Student ID', validators = [

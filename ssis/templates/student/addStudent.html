@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="container body-content">
-    <img id='stPhoto' src='' class='rounded'>
+    <img id='stPhoto' src='{{ url }}' class='rounded'>
     {{ render_form(form, url_for(ac), method='post', enctype='multipart/form-data') }}
 </div>
 

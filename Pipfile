@@ -9,6 +9,7 @@ python-dotenv = "*"
 bootstrap-flask = "*"
 flask-mysql-connector = "*"
 flask-wtf = "*"
+requests = "*"
 
 [dev-packages]
 

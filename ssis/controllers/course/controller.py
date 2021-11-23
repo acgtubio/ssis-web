@@ -58,7 +58,7 @@ def courseEdit():
     if form.validate():
         course = Course(form.course_code.data, form.course_name.data, form.college_id.data)
         a = CourseRepo.Update(course)
-        print(a)
+        # print(a)
 
         return redirect('/courses')
     return render_template('course/course.html', form=form, title='Edit Course', ac='.courseEdit')

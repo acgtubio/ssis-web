@@ -13,7 +13,8 @@ class StudentRepo():
                 '{student.lastname}', 
                 '{student.course}', 
                 '{student.year}', 
-                '{student.gender}'
+                '{student.gender}',
+                '{student.imgUrl}'
                 )""")
         except Exception as e:
             return e
@@ -35,7 +36,7 @@ class StudentRepo():
         
         studentList = []
         for student in students:
-            st = Student(student[0], student[1], student[2], student[3], student[4], student[5])
+            st = Student(student[0], student[1], student[2], student[3], student[4], student[5], student[6])
             studentList.append(st)
 
         return studentList
@@ -65,7 +66,8 @@ class StudentRepo():
                 lastname = '{student.lastname}',
                 course = '{student.course}',
                 yr = '{student.year}',
-                gender = '{student.gender}'
+                gender = '{student.gender}',
+                image_url = '{student.imgUrl}'
                 WHERE id = '{student.id}'
             """)
             mysql.connection.commit()
@@ -101,7 +103,7 @@ class StudentRepo():
         studentListInJSON = []
 
         for student in st:
-            s = Student(student[0], student[1], student[2], student[3], student[4], student[5])
+            s = Student(student[0], student[1], student[2], student[3], student[4], student[5], student[6])
             studentListInJSON.append(s)
 
         return studentListInJSON
@@ -120,7 +122,7 @@ class StudentRepo():
             return f"{e}"
         
         if st:
-            student = Student(st[0][0], st[0][1], st[0][2], st[0][3], st[0][4] ,st[0][5])
+            student = Student(st[0][0], st[0][1], st[0][2], st[0][3], st[0][4] ,st[0][5], st[0][6])
 
             return student
         
